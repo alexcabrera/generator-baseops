@@ -1,0 +1,6 @@
+---
+- name: generate locales
+  command: locale-gen en_US en_US.UTF-8
+
+- name: reconfigure locale for installed packages
+  command: dpkg-reconfigure locales

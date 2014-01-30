@@ -1,0 +1,10 @@
+---
+- name: install apt packages
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - git-core
+    - python-dev
+    - python-setuptools
+    - cython
+    - python-virtualenv
+    - virtualenvwrapper

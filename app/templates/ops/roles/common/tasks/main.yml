@@ -1,0 +1,15 @@
+---
+- name: update apt repositories
+  apt: update_cache=yes
+
+- name: upgrade distribution
+  apt: upgrade=dist
+  notify:
+    - generate locale
+    - reconfigure locale for installed packages
+
+- name: install apt packages
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - python-pip
+    - python-software-properties

@@ -1,0 +1,27 @@
+data_directory      = '/var/lib/postgresql/9.1/main'	
+hba_file            = '/etc/postgresql/9.1/main/pg_hba.conf'
+ident_file          = '/etc/postgresql/9.1/main/pg_ident.conf'
+external_pid_file   = '/var/run/postgresql/9.1-main.pid'
+
+listen_addresses    = 'localhost, {{ rdbms_host }}'
+port                = {{ rdbms_port }}
+max_connections     = 100
+
+unix_socket_directory       = '/var/run/postgresql'
+#unix_socket_group          = ''
+
+ssl                     = true				
+ssl_renegotiation_limit = 512MB	
+
+shared_buffers = 24MB
+
+log_line_prefix = '%t '
+
+datestyle = 'iso, mdy'
+
+lc_messages = 'C'			# locale for system error message
+lc_monetary = 'C'			# locale for monetary formatting
+lc_numeric = 'C'			# locale for number formatting
+lc_time = 'C'				# locale for time formatting
+
+default_text_search_config = 'pg_catalog.english'

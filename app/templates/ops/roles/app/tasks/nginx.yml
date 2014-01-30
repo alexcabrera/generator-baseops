@@ -1,0 +1,13 @@
+---
+- name: install nginx
+  apt: pkg=nginx state=latest
+  notify:
+    - disable default nginx configuration
+    - remove default nginx configuration
+
+- name: add app configuration
+  template: src=app.nginx.j2 dest=/etc/nginx/sites-available/app
+  notify:
+    - enable app configuration 
+
+

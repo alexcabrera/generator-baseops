@@ -1,0 +1,18 @@
+upstream app_server {
+    server 127.0.0.1:8000 fail_timeout=0;
+}
+
+server {
+    listen 80;
+    server_name {{ app_domain }};
+    access_log /var/log/nginx/{{ app_domain }}.access.log;
+    error_log /var/log/nginx/{{ app_domain }}.error.log;
+    keepalive_timeout 5;
+
+    location / {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_pass http://app_server;
+    }
+}

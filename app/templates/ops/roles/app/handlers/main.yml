@@ -1,0 +1,23 @@
+---
+- name: restart nginx
+  service: name=nginx state=restarted
+
+- name: disable default nginx configuration
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+- name: remove default nginx configuration
+  file: path=/etc/nginx/sites-available/default state=absent
+
+- name: enable app configuration
+  file: path=/etc/nginx/sites-available/app 
+        dest=/etc/nginx/sites-enabled/app
+        state=link
+
+- name: start supervisor
+  service: name=supervisor state=start
+
+- name: restart supervisor
+  service: name=supervisor state=restarted
+
+- name: restart app
+  supervisorctl: name=app state=restarted

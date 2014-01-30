@@ -1,0 +1,7 @@
+[program:app]
+command=/srv/virtualenvs/app/bin/gunicorn wsgi:application
+directory=/srv/app
+autostart=true
+autorestart=true
+stdout_logfile=/var/log/supervisor/app.gunicorn.log
+redirect_stderr=True
