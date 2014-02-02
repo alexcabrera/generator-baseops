@@ -5,7 +5,7 @@
 - name: upgrade distribution
   apt: upgrade=dist
   notify:
-    - generate locale
+    - generate locales
     - reconfigure locale for installed packages
 
 - name: install apt packages

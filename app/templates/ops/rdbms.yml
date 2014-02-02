@@ -1,6 +1,6 @@
 ---
-- hosts: app
+- hosts: rdbms
   sudo: yes
   roles:
     - common
-    - app
+    - rdbms

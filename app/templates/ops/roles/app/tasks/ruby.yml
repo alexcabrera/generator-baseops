@@ -1,0 +1,6 @@
+---
+- name: install ruby packages
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - ruby-dev
+    - rubygems

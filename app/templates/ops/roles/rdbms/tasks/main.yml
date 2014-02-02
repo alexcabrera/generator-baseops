@@ -17,9 +17,3 @@
 
 - name: start postgresql
   service: name=postgresql state=restarted
-
-- name: create {{ rdbms_name }} database
-  postgresql_db: name={{ rdbms_name }} state=present
-
-- name: add {{ rdbms_name }} database user
-  postgresql_user: db={{ rdbms_name }} name={{ rdbms_user }} password={{ rdbms_pass }} state=present

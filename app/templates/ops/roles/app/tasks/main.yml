@@ -2,4 +2,4 @@
 - include: nginx.yml
 - include: supervisor.yml
 - include: python.yml
-- include: django.yml
+- include: nodejs.yml

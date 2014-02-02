@@ -1,0 +1,14 @@
+[vagrant-app]
+10.0.0.2
+
+[vagrant-rdbms]
+10.0.0.3
+
+[app:children]
+vagrant-app
+
+[rdbms:children]
+vagrant-rdbms
+
+[development:children]
+vagrant-app

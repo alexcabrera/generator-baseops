@@ -22,33 +22,34 @@ BaseopsGenerator.prototype.askFor = function askFor() {
   // have Yeoman greet the user.
   console.log(this.yeoman);
 
-  var prompts = []
-    /* 
-    *  # Example Prompt
-    *  {
-    *    type: 'confirm',
-    *    name: 'someOption',
-    *    message: 'Would you like to enable this option?',
-    *    default: true
-    *  }
-    */
+  var prompts = [
+    {
+        message: 'Choose a VM configuration for Vagrant',
+        type: 'list',
+        name: 'vmConfiguration',
+        default: 'single',
+        choices: [
+            {
+                name: 'single - all roles on one machine',
+                value: 'single'
+            },
+            {
+                name: 'multi - each role on its own machine',
+                value: 'multi'
+            }
+        ]
+    }
+  ]
 
   this.prompt(prompts, function (props) {
-    /* 
-     * # Setting Options
-     * this.someOption = props.someOption;
-    */
+    this.vmConfiguration = props.vmConfiguration
+    console.log(this.vmConfiguration);
     cb();
   }.bind(this));
 };
 
 BaseopsGenerator.prototype.app = function app() {
-  this.directory('app', 'app');
   this.directory('ops', 'ops');
-
-  this.copy('manage.py', 'manage.py');
-  this.copy('requirements.txt', 'requirements.txt');
-
-  this.copy('Vagrantfile', 'Vagrantfile');
+  this.template('_Vagrantfile', 'Vagrantfile');
   this.copy('_package.json', 'package.json');
 };

@@ -1,0 +1,13 @@
+---
+- name: add the node.js repository
+  apt_repository: repo=ppa:'chris-lea/node.js' state=absent update_cache=yes
+
+- name: install node packages
+  apt:  pkg={{ item }} state=latest
+  with_items:
+    - nodejs
+    - npm
+
+- name: symlink /usr/bin/nodejs to /usr/bin/node
+  file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
+

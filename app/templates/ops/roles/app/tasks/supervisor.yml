@@ -4,7 +4,4 @@
   notify:
     - start supervisor
 
-- name: add supervisor configuration
-  template: src=app.supervisor.j2 dest=/etc/supervisor/conf.d/app.conf
-  notify:
-    - restart supervisor
+
