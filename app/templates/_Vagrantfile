@@ -1,44 +1,19 @@
 VAGRANTFILE_API_VERSION = '2'
-<% if(vmConfiguration == 'single') { %>
-ANSIBLE_INVENTORY_PATH  = 'ops/inventory/development-single'
-<% } else { %>
-ANSIBLE_INVENTORY_PATH  = 'ops/inventory/development-multi
-<% } %>
 BOX                     = 'saucy64-official'
-BOX_URL                 = 'http://cloud-images.ubuntu.com/vagrant/saucy/      current/saucy-server-cloudimg-amd64-vagrant-disk1.box'
+BOX_URL                 = 'http://cloud-images.ubuntu.com/vagrant/saucy/current/saucy-server-cloudimg-amd64-vagrant-disk1.box'
 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box       = BOX
     config.vm.box_url   = BOX_URL
 
-    <% if(vmConfiguration == 'multi') { %>
-    # RDBMS Server
-    config.vm.define 'rdbms' do |rdbms|
-        app.vm.hostname = 'vagrant-rdbms'
-        app.vm.network :private_network, ip: '10.0.0.3'
-        app.vm.provision :ansible do |ansible|
-            ansible.inventory_path  = ANSIBLE_INVENTORY_PATH
-            ansible.playbook        = 'ops/rdbms.yml'
+    config.vm.define '<%= projectName %>' do |<%= projectName %>|
+        <%= projectName %>.vm.hostname = '<%= projectName %>.local'
+        <%= projectName %>.vm.synced_folder '.', '/srv/<%= projectName %>'
+        <%= projectName %>.vm.provision :ansible do |ansible|
+            ansible.inventory_path  = 'ops/inventory/vagrant'
+            ansible.playbook        = 'ops/vagrant.yml'
         end
     end
-    <% } %>
-
-    # Application Server 
-    config.vm.define 'app' do |app|
-        app.vm.hostname = 'vagrant-app'
-
-        app.vm.synced_folder '.', '/srv/app'
-        app.vm.network :private_network, ip: '10.0.0.2'
-        app.vm.provision :ansible do |ansible|
-            ansible.inventory_path  = ANSIBLE_INVENTORY_PATH
-            <% if(vmConfiguration == 'single') { %>
-            ansible.playbook        = 'ops/single-vm.yml'
-            <% } else { %>
-            ansible.playbook        = 'ops/app.yml'
-            <% } %>
-        end
-    end
-
-
+    
 end

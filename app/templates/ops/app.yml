@@ -1,6 +1,0 @@
----
-- hosts: app
-  sudo: yes
-  roles:
-    - common
-    - app

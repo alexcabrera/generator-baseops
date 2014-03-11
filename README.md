@@ -1,41 +1,36 @@
-## Getting Started
+# generator-baseops
 
-This package creates a web application development environment based on Django 
+This is a [Yeoman Generator](http://yeoman.io) that creates a baseline  environment suitable for web application development within a Vagrant-managed virtual machine.
 
-### Requirements
+It configures an Ubuntu 13.10 server running [Nginx](http://nginx.org), [PostgreSQL](http://www.postgresql.org/), and [Supervisor](http://supervisord.org/).
 
-Please have the following installed:
+## Prerequisites
 
-* [Vagrant](http://vagrantup.com) 1.4.3 or newer
-* [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) 0.10.0 or newer
-* [Ansible](http://ansibleworks.com) from *devel* branch
+| Package                            	| Version |
+|-------------------------------------------------|
+| [Vagrant](http://vagrantup.com)    	| 1.5.x   |
+| [Ansible](http://ansibleworks.com) 	| 1.5.x   |
+| [npm](http://npmjs.org) 				 	| 1.4.x   |
 
-#### How to install Ansible from the devel branch on Mac OS X
 
-Use [Homebrew](http://brew.sh/).
+## Installation
 
-```
-→ brew install ansible --HEAD 	# install Ansible from *devel* branch
-```
-
-From that point on, upgrading the package is a simple matter of running Homebrew's upgrade command:
+You may install this generator using [npm](https://www.npmjs.org/).
 
 ```
-→ brew update                 # update Homebrew's repository listing
-→ brew upgrade ansible        # apply the latest upstream changes
+→ npm install baseops
 ```
 
-### Ignore SSH Key checking
+## Usage
 
-You'll probably be destroying and rebuilding the box a lot and having to clean up your `known_hosts` file is going to get annoying pretty quick. Instead, add the following to `~/.ssh/config` to bypass the check when accessing the virtual machine.
+Run `yo baseops` from within a project directory, then follow the on-screen instructions.
 
 ```
-Host 10.0.0.2
-  StrictHostKeyChecking no
-  UserKnownHostsFile /dev/null
+→ mkdir myproject
+→ cd myproject
+→ yo baseops
 ```
-
-### Development Environment
+## Development Environment
 
 Use Vagrant to start the development environment.
 

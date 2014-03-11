@@ -2,6 +2,7 @@
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
+var crypto = require('crypto');
 
 
 var BaseopsGenerator = module.exports = function BaseopsGenerator(args, options, config) {
@@ -24,26 +25,15 @@ BaseopsGenerator.prototype.askFor = function askFor() {
 
   var prompts = [
     {
-        message: 'Choose a VM configuration for Vagrant',
-        type: 'list',
-        name: 'vmConfiguration',
-        default: 'single',
-        choices: [
-            {
-                name: 'single - all roles on one machine',
-                value: 'single'
-            },
-            {
-                name: 'multi - each role on its own machine',
-                value: 'multi'
-            }
-        ]
+        name: 'projectName',
+        message: 'Project Name',
+        type: 'input'
     }
   ]
 
   this.prompt(prompts, function (props) {
-    this.vmConfiguration = props.vmConfiguration
-    console.log(this.vmConfiguration);
+    this.projectName    = props.projectName;
+    this.secretKey      = crypto.createHash('md5');
     cb();
   }.bind(this));
 };

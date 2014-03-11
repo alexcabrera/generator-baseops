@@ -1,0 +1,14 @@
+---
+environment     : vagrant
+project_name    : <%= projectName %>
+
+app_domain      : <%= projectName %>.local
+app_host        : 10.0.0.2
+app_secret      : <%= secretKey %>
+
+rdbms_name      : <%= projectName %>
+rdbms_user      : <%= projectName %>
+rdbms_pass      : <%= projectName %>
+rdbms_host      : 127.0.0.1
+rdbms_port      : 5432
+

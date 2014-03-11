@@ -1,6 +1,7 @@
 ---
-- hosts: rdbms
+- hosts: vagrant
   sudo: yes
   roles:
     - common
     - rdbms
+    - app
