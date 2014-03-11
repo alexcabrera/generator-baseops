@@ -1,0 +1,9 @@
+---
+- name: install git
+  apt: pkg=git-core state=latest
+
+- name: clone repository
+  git:
+    repo=<%= gitRepoUrl %>
+    dest=/srv/<%= projectName %>
+    accept_hostkey=True

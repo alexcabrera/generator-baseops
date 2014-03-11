@@ -28,11 +28,17 @@ BaseopsGenerator.prototype.askFor = function askFor() {
         name: 'projectName',
         message: 'Project Name',
         type: 'input'
+    },
+    {
+        name: 'gitRepoUrl',
+        message: 'SSH Git Clone URL (ex. git@github.com:marquee/generator-baseops.git)',
+        type: 'input'
     }
   ]
 
   this.prompt(prompts, function (props) {
     this.projectName    = props.projectName;
+    this.gitRepoUrl     = props.gitRepoUrl;
     this.secretKey      = crypto.createHash('md5');
     cb();
   }.bind(this));
@@ -41,5 +47,6 @@ BaseopsGenerator.prototype.askFor = function askFor() {
 BaseopsGenerator.prototype.app = function app() {
   this.directory('ops', 'ops');
   this.template('_Vagrantfile', 'Vagrantfile');
-  this.copy('_package.json', 'package.json');
+  this.template('_package.json', 'package.json');
+  this.copy('deploy.py', 'deploy.py');
 };

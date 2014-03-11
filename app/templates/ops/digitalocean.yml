@@ -1,0 +1,9 @@
+---
+- hosts: digitalocean
+  user: root
+  roles:
+    - remote
+    - common
+    - rdbms
+    - app
+
