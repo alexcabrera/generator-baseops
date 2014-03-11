@@ -6,11 +6,11 @@ It configures an Ubuntu 13.10 server running [Nginx](http://nginx.org), [Postgre
 
 ## Prerequisites
 
-| Package                            	| Version |
-|-------------------------------------------------|
-| [Vagrant](http://vagrantup.com)    	| 1.5.x   |
-| [Ansible](http://ansibleworks.com) 	| 1.5.x   |
-| [npm](http://npmjs.org) 				 	| 1.4.x   |
+| Package                              | Version |
+| ------------------------------------ | ------- |
+| [Vagrant](http://vagrantup.com)      | 1.5.x   |
+| [Ansible](http://ansibleworks.com)   | 1.5.x   |
+| [npm](http://npmjs.org)              | 1.4.x   |
 
 
 ## Installation
